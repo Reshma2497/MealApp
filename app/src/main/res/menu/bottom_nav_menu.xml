@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/navigation_areas"
+        android:icon="@drawable/ic_area"
+        android:title="@string/title_areas" />
+
+    <item
+        android:id="@+id/navigation_categories"
+        android:icon="@drawable/ic_category"
+        android:title="Categories" />
+
+    <item
+        android:id="@+id/navigation_ingredients"
+        android:icon="@drawable/ic_ingredients"
+        android:title="@string/title_ingredients" />
+
+    <item
+        android:id="@+id/navigation_signout"
+        android:icon="@drawable/ic_signout"
+        android:title="@string/title_signout" />
+
+</menu>

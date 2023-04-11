@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/mobile_navigation"
+    app:startDestination="@id/loginFragment">
+
+    <fragment
+        android:id="@+id/navigation_areas"
+        android:name="com.example.mealapp.ui.areas.AreasFragment"
+        android:label="@string/title_areas"
+        tools:layout="@layout/fragment_areas" >
+        <action
+            android:id="@+id/action_navigation_areas_to_mealFragment"
+            app:destination="@id/mealFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/navigation_categories"
+        android:name="com.example.mealapp.ui.categories.CategoriesFragment"
+        android:label="@string/title_categories"
+        tools:layout="@layout/fragment_categories" >
+        <action
+            android:id="@+id/action_navigation_categories_to_mealFragment"
+            app:destination="@id/mealFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/navigation_ingredients"
+        android:name="com.example.mealapp.ui.Ingredients.IngredientsFragment"
+        android:label="@string/title_ingredients"
+        tools:layout="@layout/fragment_ingredients" >
+        <action
+            android:id="@+id/action_navigation_ingredients_to_mealFragment"
+            app:destination="@id/mealFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/mealFragment"
+        android:name="com.example.mealapp.ui.meals.MealFragment"
+        android:label="Meal"
+        tools:layout="@layout/fragment_meal" >
+        <action
+            android:id="@+id/action_mealFragment_to_mealDetailsFragment"
+            app:destination="@id/mealDetailsFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/mealDetailsFragment"
+        android:name="com.example.mealapp.ui.mealsdetails.MealDetailsFragment"
+        android:label="Meal_details"
+        tools:layout="@layout/fragment_meal_details" />
+    <fragment
+        android:id="@+id/loginFragment"
+        android:name="com.example.mealapp.ui.login.LoginFragment"
+        android:label="LogIn"
+        tools:layout="@layout/fragment_login" >
+        <action
+            android:id="@+id/action_loginFragment_to_navigation_categories"
+            app:destination="@id/navigation_categories" />
+    </fragment>
+    <fragment
+        android:id="@+id/navigation_signout"
+        android:name="com.example.mealapp.ui.login.SignOutFragment"
+        android:label="Sign_Out"
+        tools:layout="@layout/fragment_sign_out" >
+        <action
+            android:id="@+id/action_signOutFragment_to_loginFragment"
+            app:destination="@id/loginFragment" />
+    </fragment>
+</navigation>

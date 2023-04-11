@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "969366839997",
+    "project_id": "mealapp-ab183",
+    "storage_bucket": "mealapp-ab183.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:969366839997:android:a1fcba0b3f377768684dd4",
+        "android_client_info": {
+          "package_name": "com.example.mealapp"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "969366839997-30929ppaardmvgi35n3nccfqpcjatifn.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD-wdT14dsoubzwOsMq5i7c5n0VNGGgpKs"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "969366839997-30929ppaardmvgi35n3nccfqpcjatifn.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
