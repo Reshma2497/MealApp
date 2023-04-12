@@ -14,7 +14,15 @@
       },
       "oauth_client": [
         {
-          "client_id": "969366839997-30929ppaardmvgi35n3nccfqpcjatifn.apps.googleusercontent.com",
+          "client_id": "969366839997-a1gchdrjgj886dr4p3cv3sj8k5d00jjn.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.mealapp",
+            "certificate_hash": "e74a79b477969afe1bd4e676f4306d201ad580dc"
+          }
+        },
+        {
+          "client_id": "969366839997-2ej7su7goqidh5sr93evnrc11aq0ep3g.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
@@ -27,7 +35,7 @@
         "appinvite_service": {
           "other_platform_oauth_client": [
             {
-              "client_id": "969366839997-30929ppaardmvgi35n3nccfqpcjatifn.apps.googleusercontent.com",
+              "client_id": "969366839997-2ej7su7goqidh5sr93evnrc11aq0ep3g.apps.googleusercontent.com",
               "client_type": 3
             }
           ]

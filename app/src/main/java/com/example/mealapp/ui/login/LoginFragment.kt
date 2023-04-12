@@ -3,11 +3,6 @@ package com.example.mealapp.ui.login
 import android.app.Activity
 import android.app.AlertDialog
 import android.content.ContentValues.TAG
-import android.content.Intent
-import androidx.lifecycle.Observer
-import androidx.lifecycle.ViewModelProvider
-import androidx.annotation.StringRes
-import androidx.fragment.app.Fragment
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
@@ -19,20 +14,32 @@ import android.view.ViewGroup
 import android.view.inputmethod.EditorInfo
 import android.widget.Toast
 import androidx.activity.result.contract.ActivityResultContracts
+import androidx.annotation.StringRes
+import androidx.fragment.app.Fragment
+import androidx.lifecycle.Observer
+import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
-import com.example.mealapp.databinding.FragmentLoginBinding
 import com.example.mealapp.R
-import com.example.mealapp.ui.MainActivity
-import com.google.firebase.FirebaseApp
-import com.google.firebase.auth.FirebaseAuth
-import com.google.firebase.auth.ktx.auth
-import com.google.firebase.ktx.Firebase
+import com.example.mealapp.databinding.FragmentLoginBinding
+import com.facebook.CallbackManager
+import com.facebook.FacebookCallback
+import com.facebook.FacebookException
+import com.facebook.FacebookSdk
+import com.facebook.login.LoginManager
 import com.google.android.gms.auth.api.signin.GoogleSignIn
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount
 import com.google.android.gms.auth.api.signin.GoogleSignInClient
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions
 import com.google.android.gms.tasks.Task
+import com.google.firebase.FirebaseApp
+import com.facebook.*
+import com.facebook.FacebookSdk.getApplicationContext
+import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.GoogleAuthProvider
+import com.google.firebase.auth.ktx.auth
+import com.google.firebase.ktx.Firebase
+import java.util.*
+
 
 class LoginFragment : Fragment() {
 
@@ -62,8 +69,11 @@ class LoginFragment : Fragment() {
     ): View? {
 
         _binding = FragmentLoginBinding.inflate(inflater, container, false)
+        FacebookSdk.sdkInitialize(getApplicationContext());
         FirebaseApp.initializeApp(requireContext())
         auth = Firebase.auth
+
+
         //Google
         val gso = GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
             .requestIdToken(getString(R.string.default_web_client_id))
@@ -76,6 +86,10 @@ class LoginFragment : Fragment() {
         binding?.GoogleLogin?.setOnClickListener {
             signInGoogle()
         }
+
+
+
+
         return binding.root
 
     }
@@ -110,17 +124,17 @@ class LoginFragment : Fragment() {
         val credential = GoogleAuthProvider.getCredential(account.idToken , null)
         auth.signInWithCredential(credential).addOnCompleteListener {
             if (it.isSuccessful){
-           val intent : Intent = Intent(requireActivity() , MainActivity::class.java)
-       intent.putExtra("email" , account.email)
-      intent.putExtra("name" , account.displayName)
-                startActivity(intent)
+//           val intent : Intent = Intent(requireActivity() , MainActivity::class.java)
+//       intent.putExtra("email" , account.email)
+//      intent.putExtra("name" , account.displayName)
+//                startActivity(intent)
 
-//                val bundle = Bundle().apply {
-//                    putSerializable("userid", auth.currentUser?.email)
-//                }
-//                findNavController().navigate(
-//                    R.id.action_loginFragment_to_navigation_categories, bundle
-//                )
+                val bundle = Bundle().apply {
+                    putSerializable("userid", auth.currentUser?.email)
+                }
+                findNavController().navigate(
+                    R.id.action_loginFragment_to_navigation_categories, bundle
+                )
             }else{
                 Toast.makeText(context, it.exception.toString() , Toast.LENGTH_SHORT).show()
 
@@ -136,6 +150,7 @@ class LoginFragment : Fragment() {
         val passwordEditText = binding.password
         val loginButton = binding.login
         val signupButton = binding.signup
+        val facebookButton=binding.FacebookLogin
         val loadingProgressBar = binding.loading
 
         loginViewModel.loginFormState.observe(viewLifecycleOwner,
@@ -200,9 +215,9 @@ class LoginFragment : Fragment() {
                 builder.setPositiveButton("OK") { dialog, which ->
                     // Do something when the "OK" button is clicked
                 }
-                builder.setNegativeButton("Cancel") { dialog, which ->
-                    // Do something when the "Cancel" button is clicked
-                }
+//                builder.setNegativeButton("Cancel") { dialog, which ->
+//                    // Do something when the "Cancel" button is clicked
+//                }
                 builder.show()
                 loadingProgressBar.visibility = View.VISIBLE
                 signup(
@@ -226,9 +241,9 @@ class LoginFragment : Fragment() {
                 builder.setPositiveButton("OK") { dialog, which ->
                     // Do something when the "OK" button is clicked
                 }
-                builder.setNegativeButton("Cancel") { dialog, which ->
-                    // Do something when the "Cancel" button is clicked
-                }
+//                builder.setNegativeButton("Cancel") { dialog, which ->
+//                    // Do something when the "Cancel" button is clicked
+//                }
                 builder.show()
                 loadingProgressBar.visibility = View.VISIBLE
                 login(
@@ -236,6 +251,30 @@ class LoginFragment : Fragment() {
                     passwordEditText.text.toString()
                 )
             }
+        }
+
+        // Callback registration
+        val callbackManager = CallbackManager.Factory.create()
+
+        binding?.FacebookLogin?.setOnClickListener {
+
+           LoginManager.getInstance().logInWithReadPermissions(this, Arrays.asList("email", "public_profile"))
+            LoginManager.getInstance().registerCallback(callbackManager, object : FacebookCallback<com.facebook.login.LoginResult>{
+                override fun onCancel() {
+                    Toast.makeText(context, "Cancel", Toast.LENGTH_SHORT).show()
+                }
+
+                override fun onError(error: FacebookException) {
+                    Toast.makeText(context, "Error", Toast.LENGTH_SHORT).show()
+                }
+
+                override fun onSuccess(result: com.facebook.login.LoginResult) {
+                    Toast.makeText(context, "Success", Toast.LENGTH_SHORT).show()
+                    login( usernameEditText.text.toString(),
+                        passwordEditText.text.toString())
+                }
+
+            })
         }
     }
         private fun signup(username: String, password: String) {
@@ -315,7 +354,7 @@ class LoginFragment : Fragment() {
             }
             if(!validatePassword( passwordEditText.text.toString()))
             {
-                passwordEditText.error="password should contain atleast 1 number,1 special character, 1captial,min length8"
+                passwordEditText.error="password should contain \n atleast 1 number\n 1 special character\n 1 capital\n minimum length8"
                 allClear=false
             }
             return allClear
@@ -338,3 +377,4 @@ class LoginFragment : Fragment() {
         _binding = null
     }
 }
+

@@ -10,12 +10,17 @@
     <string name="action_sign_up">Register</string>
     <string name="action_sign_in_short">Sign in</string>
     <string name="welcome">"Welcome!"</string>
-    <string name="invalid_username">Not a valid username</string>
+    <string name="invalid_username">please enter a valid username</string>
     <string name="invalid_password">Password must be >5 characters</string>
     <string name="login_failed">"Login failed"</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="title_signout">SignOut</string>
+
+    <string name="facebook_app_id">240870068416093</string>
+    <string name="fb_login_protocol_scheme">fb240870068416093</string>
+    <string name="facebook_client_token">f1f2edb17a2c98a95884573e83279f68</string>
+    <string name="facebook_app_id_custom">facebookbutton</string>
 
 
 </resources>

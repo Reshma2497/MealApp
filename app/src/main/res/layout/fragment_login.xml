@@ -75,22 +75,43 @@
         app:layout_constraintTop_toBottomOf="@+id/password"
         app:layout_constraintVertical_bias="0.183" />
 
-    <Button
+    <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/GoogleLogin"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="185dp"
+        android:layout_height="37dp"
         android:layout_gravity="start"
         android:layout_marginStart="48dp"
         android:layout_marginTop="16dp"
         android:layout_marginEnd="48dp"
         android:layout_marginBottom="64dp"
-        android:text="Google"
+        android:background="@color/purple_500"
+        android:drawableStart="@drawable/ic_google"
+        android:text="Login with Google"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.409"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/password"
         app:layout_constraintVertical_bias="0.412" />
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/FacebookLogin"
+        android:layout_width="188dp"
+        android:layout_height="37dp"
+        android:layout_gravity="start"
+        android:layout_marginStart="48dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="48dp"
+        android:layout_marginBottom="64dp"
+        android:background="@color/purple_500"
+        android:drawableStart="@drawable/ic_facebook"
+        android:text="Login with facebook"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.428"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/password"
+        app:layout_constraintVertical_bias="0.6" />
 
     <ProgressBar
         android:id="@+id/loading"
